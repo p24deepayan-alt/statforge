@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StatForge - Modeling</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191c1c",
+                        "on-primary-fixed": "#001550",
+                        "surface-container-low": "#f2f4f3",
+                        "inverse-surface": "#2e3131",
+                        "secondary-container": "#e1dfdf",
+                        "primary": "#001857",
+                        "surface-bright": "#f8faf9",
+                        "surface-container-high": "#e6e9e8",
+                        "primary-fixed": "#dce1ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#304382",
+                        "outline": "#757681",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#8799df",
+                        "background": "#f8faf9",
+                        "surface": "#f8faf9",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-on-surface": "#eff1f0",
+                        "surface-tint": "#495b9c",
+                        "primary-container": "#1b2f6e",
+                        "surface-variant": "#e1e3e2",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e3e2",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d8dad9",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#3dacac",
+                        "tertiary-fixed-dim": "#6ed7d7",
+                        "surface-container": "#eceeed",
+                        "on-surface-variant": "#454650",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1c",
+                        "tertiary-container": "#003b3b",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed": "#8bf3f3",
+                        "tertiary": "#002424",
+                        "outline-variant": "#c5c5d2",
+                        "on-secondary-container": "#626262",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b6c4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar_width": "260px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "gutter": "12px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "data-mono": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen flex flex-col overflow-hidden font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 font-inter antialiased text-sm docked full-width top-0 border-b border-b border-gray-200 dark:border-gray-800 flat no shadows flex justify-between items-center px-6 h-14 w-full z-50 shrink-0">
+<div class="flex items-center gap-4">
+<span class="text-lg font-bold tracking-tight text-[#1B2F6E] dark:text-white">StatForge</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors p-sm rounded-DEFAULT">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors p-sm rounded-DEFAULT">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors p-sm rounded-DEFAULT">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="professional headshot of a person looking at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEhTeZ5CwSqe8X3_Fjcfrn8Myv7KirhEndTH0pEz1wXcImh0nPlmwYGVY7KspstRFDlmhqqOvkNKofwIxgi2rK5p4P3LIfi_2XkM9VW96ilm47zCSIwLdArQYt30Wv0F4ZtGWS8_lAJBY8H4rkn3PG7430_2_DaPEmheM57b4yI7wab0V1LFzMph3RMk8KnWAj53hSJPhkFHtQsRDm8SGGWLYjxdRxLUzD6iRLDYKU1eXqZtAUEmeuVou6HIgAVx3vErdHRmMm32Rz"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-[#F7F8F9] dark:bg-slate-950 font-inter text-[13px] font-medium fixed left-0 top-0 h-screen w-64 border-r border-r border-gray-200 dark:border-gray-800 flat no shadows flex flex-col h-full pt-16 pb-4 shrink-0 relative z-40 hidden md:flex">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<div class="font-h2 text-h2 text-[#1B2F6E]">Project Alpha</div>
+<div class="font-body-sm text-body-sm text-secondary">Last synced: 2m ago</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-xs px-sm flex-1">
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-900 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span>Datasets</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-[#1B2F6E] dark:text-white font-bold bg-white dark:bg-slate-900 border-r-[3px] border-[#1B2F6E] shadow-sm hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span>Modeling</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-900 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span>Graphs</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-900 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span>Export</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-xs px-sm border-t border-outline-variant pt-sm">
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-900 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-900 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-slate-800 transition-all scale-95 duration-100 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span>Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex-1 overflow-y-auto bg-surface flex flex-col md:ml-sidebar_width">
+<div class="flex-1 p-lg flex flex-col xl:flex-row gap-lg">
+<!-- Central Canvas: Fitted Model Results -->
+<div class="flex-1 flex flex-col gap-lg min-w-0">
+<!-- Header -->
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-DEFAULT flex justify-between items-center">
+<div class="flex items-center gap-md">
+<h1 class="font-h1 text-h1 text-primary-container">OLS: Housing Price Prediction</h1>
+<span class="px-sm py-xs bg-surface-container-low text-secondary text-body-sm font-body-sm rounded-DEFAULT border border-outline-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span> Fit Success
+                            </span>
+</div>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface">Add to Report</span>
+</label>
+</div>
+<!-- Summary Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT overflow-hidden">
+<div class="px-md py-sm bg-surface-container-low border-b border-outline-variant font-h2 text-h2 text-on-surface">Model Summary</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+<th class="px-md py-sm font-medium">Variable</th>
+<th class="px-md py-sm font-medium">Coef</th>
+<th class="px-md py-sm font-medium">Std.Err</th>
+<th class="px-md py-sm font-medium">t</th>
+<th class="px-md py-sm font-medium">P&gt;|t|</th>
+<th class="px-md py-sm font-medium">[0.025, 0.975]</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-bright">
+<td class="px-md py-sm font-body-md">Intercept</td>
+<td class="px-md py-sm">24500.12</td>
+<td class="px-md py-sm">1200.50</td>
+<td class="px-md py-sm">20.408</td>
+<td class="px-md py-sm">0.000</td>
+<td class="px-md py-sm">[22147.10, 26853.14]</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-bright bg-surface-container-lowest">
+<td class="px-md py-sm font-body-md"><span class="px-xs py-base bg-tertiary-fixed-dim/15 text-tertiary-container rounded-DEFAULT inline-block">sqft_living</span></td>
+<td class="px-md py-sm">280.62</td>
+<td class="px-md py-sm">14.20</td>
+<td class="px-md py-sm">19.762</td>
+<td class="px-md py-sm">0.000</td>
+<td class="px-md py-sm">[252.79, 308.45]</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-bright">
+<td class="px-md py-sm font-body-md"><span class="px-xs py-base bg-tertiary-fixed-dim/15 text-tertiary-container rounded-DEFAULT inline-block">bedrooms</span></td>
+<td class="px-md py-sm">-15000.45</td>
+<td class="px-md py-sm">3000.10</td>
+<td class="px-md py-sm">-5.000</td>
+<td class="px-md py-sm">0.000</td>
+<td class="px-md py-sm">[-20880.65, -9120.25]</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-bright bg-surface-container-lowest">
+<td class="px-md py-sm font-body-md"><span class="px-xs py-base bg-tertiary-fixed-dim/15 text-tertiary-container rounded-DEFAULT inline-block">bathrooms</span></td>
+<td class="px-md py-sm">45000.80</td>
+<td class="px-md py-sm">5200.40</td>
+<td class="px-md py-sm">8.653</td>
+<td class="px-md py-sm">0.000</td>
+<td class="px-md py-sm">[34808.02, 55193.58]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Diagnostic Plots Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col h-64 relative overflow-hidden group">
+<div class="px-sm py-xs border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest z-10 absolute top-0 w-full">
+<span class="font-body-sm text-body-sm text-secondary font-medium">Residuals vs Fitted</span>
+<button class="text-secondary hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]" data-icon="open_in_full">open_in_full</span></button>
+</div>
+<div class="flex-1 bg-white relative mt-8 flex items-center justify-center p-sm">
+<div class="w-full h-full border border-dashed border-outline-variant rounded flex items-center justify-center text-outline-variant font-body-sm text-body-sm">
+                                    [Plot: Residuals vs Fitted]
+                                </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col h-64 relative overflow-hidden group">
+<div class="px-sm py-xs border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest z-10 absolute top-0 w-full">
+<span class="font-body-sm text-body-sm text-secondary font-medium">Normal Q-Q</span>
+<button class="text-secondary hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]" data-icon="open_in_full">open_in_full</span></button>
+</div>
+<div class="flex-1 bg-white relative mt-8 flex items-center justify-center p-sm">
+<div class="w-full h-full border border-dashed border-outline-variant rounded flex items-center justify-center text-outline-variant font-body-sm text-body-sm">
+                                    [Plot: Normal Q-Q]
+                                </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col h-64 relative overflow-hidden group">
+<div class="px-sm py-xs border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest z-10 absolute top-0 w-full">
+<span class="font-body-sm text-body-sm text-secondary font-medium">Scale-Location</span>
+<button class="text-secondary hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]" data-icon="open_in_full">open_in_full</span></button>
+</div>
+<div class="flex-1 bg-white relative mt-8 flex items-center justify-center p-sm">
+<div class="w-full h-full border border-dashed border-outline-variant rounded flex items-center justify-center text-outline-variant font-body-sm text-body-sm">
+                                    [Plot: Scale-Location]
+                                </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col h-64 relative overflow-hidden group">
+<div class="px-sm py-xs border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest z-10 absolute top-0 w-full">
+<span class="font-body-sm text-body-sm text-secondary font-medium">Residuals vs Leverage</span>
+<button class="text-secondary hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]" data-icon="open_in_full">open_in_full</span></button>
+</div>
+<div class="flex-1 bg-white relative mt-8 flex items-center justify-center p-sm">
+<div class="w-full h-full border border-dashed border-outline-variant rounded flex items-center justify-center text-outline-variant font-body-sm text-body-sm">
+                                    [Plot: Residuals vs Leverage]
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Configuration & History -->
+<div class="w-full xl:w-80 flex flex-col gap-lg shrink-0">
+<!-- Configure Model -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low font-h2 text-h2 text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="tune">tune</span> Configure Model
+                        </div>
+<div class="p-md flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-secondary uppercase">Model Family</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-xs font-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 outline-none transition-shadow">
+<option>Linear Regression (OLS)</option>
+<option>Ridge Regression</option>
+<option>Lasso Regression</option>
+<option>Logistic Regression</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-secondary uppercase">Target Variable (Y)</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-xs font-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 outline-none transition-shadow">
+<option>price</option>
+<option>log_price</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-secondary uppercase">Predictors (X)</label>
+<div class="border border-outline-variant rounded-DEFAULT p-sm bg-surface-container-low max-h-40 overflow-y-auto flex flex-col gap-xs">
+<label class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-xs rounded">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-data-mono text-data-mono">sqft_living</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-xs rounded">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-data-mono text-data-mono">bedrooms</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-xs rounded">
+<input checked="" class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-data-mono text-data-mono">bathrooms</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-xs rounded">
+<input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-data-mono text-data-mono">floors</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-highest p-xs rounded">
+<input class="rounded border-outline text-primary-container focus:ring-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-data-mono text-data-mono">yr_built</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-secondary uppercase">Interaction Terms</label>
+<button class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-xs font-body-md text-secondary hover:bg-surface-container-low hover:text-on-surface transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> Add Interaction
+                                </button>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-body-md font-medium py-sm px-md rounded-DEFAULT hover:bg-primary-container/90 transition-colors mt-sm flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="play_arrow">play_arrow</span> Run Model
+                            </button>
+</div>
+</div>
+<!-- Saved Models -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT flex flex-col flex-1 min-h-[300px]">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low font-h2 text-h2 text-on-surface flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="history">history</span> Saved Models
+                            </div>
+<button class="text-secondary hover:text-on-surface"><span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span></button>
+</div>
+<div class="flex flex-col overflow-y-auto p-sm gap-sm">
+<div class="border border-primary-container rounded-DEFAULT p-sm bg-primary-fixed/20 cursor-pointer flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-medium text-on-surface">OLS: Housing Price</span>
+<span class="font-label-caps text-label-caps text-secondary">Active</span>
+</div>
+<div class="font-body-sm text-body-sm text-secondary truncate">y=price, x=sqft, bed, bath</div>
+<div class="flex justify-between items-center mt-xs">
+<span class="font-data-mono text-data-mono text-xs text-secondary">R²: 0.84</span>
+<span class="font-data-mono text-data-mono text-xs text-secondary">Today, 10:42 AM</span>
+</div>
+</div>
+<div class="border border-outline-variant rounded-DEFAULT p-sm hover:bg-surface-container-low cursor-pointer transition-colors flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-medium text-on-surface">Ridge: alpha=0.5</span>
+</div>
+<div class="font-body-sm text-body-sm text-secondary truncate">y=log_price, x=all</div>
+<div class="flex justify-between items-center mt-xs">
+<span class="font-data-mono text-data-mono text-xs text-secondary">R²: 0.81</span>
+<span class="font-data-mono text-data-mono text-xs text-secondary">Yesterday</span>
+</div>
+</div>
+<div class="border border-outline-variant rounded-DEFAULT p-sm hover:bg-surface-container-low cursor-pointer transition-colors flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-medium text-on-surface">OLS: Baseline</span>
+</div>
+<div class="font-body-sm text-body-sm text-secondary truncate">y=price, x=sqft_living</div>
+<div class="flex justify-between items-center mt-xs">
+<span class="font-data-mono text-data-mono text-xs text-secondary">R²: 0.65</span>
+<span class="font-data-mono text-data-mono text-xs text-secondary">Oct 12</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

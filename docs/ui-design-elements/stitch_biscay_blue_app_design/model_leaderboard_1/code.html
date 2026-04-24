@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StatForge - Best-Model Finder</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e1e3e2",
+                        "surface-container-high": "#e6e9e8",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-dim": "#d8dad9",
+                        "on-background": "#191c1c",
+                        "inverse-primary": "#b6c4ff",
+                        "tertiary-container": "#003b3b",
+                        "surface-container-low": "#f2f4f3",
+                        "outline-variant": "#c5c5d2",
+                        "surface-bright": "#f8faf9",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#002424",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-primary-fixed-variant": "#304382",
+                        "surface": "#f8faf9",
+                        "tertiary-fixed-dim": "#6ed7d7",
+                        "surface-variant": "#e1e3e2",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#495b9c",
+                        "secondary": "#5e5e5e",
+                        "on-primary-container": "#8799df",
+                        "inverse-on-surface": "#eff1f0",
+                        "outline": "#757681",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-secondary-container": "#626262",
+                        "on-primary": "#ffffff",
+                        "background": "#f8faf9",
+                        "on-primary-fixed": "#001550",
+                        "on-tertiary-container": "#3dacac",
+                        "primary-fixed": "#dce1ff",
+                        "primary-container": "#1b2f6e",
+                        "tertiary-fixed": "#8bf3f3",
+                        "secondary-container": "#e1dfdf",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceeed",
+                        "on-surface-variant": "#454650",
+                        "on-surface": "#191c1c",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "primary": "#001857",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed": "#002020",
+                        "inverse-surface": "#2e3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "gutter": "12px",
+                        "sidebar_width": "260px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "data-mono": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "h2": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden antialiased">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-4 gap-2 bg-surface-bright border-r border-outline-variant w-[260px] flex-shrink-0 z-10 transition-all duration-200 ease-in-out">
+<div class="px-md pb-md mb-sm border-b border-outline-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<div>
+<h1 class="font-h2 text-h2 text-primary tracking-tight">StatForge</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Analytical Studio</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto flex flex-col gap-xs px-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">database</span>
+<span>Datasets</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+<span>Statistics</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT bg-surface-container-highest text-primary border-r-4 border-primary shadow-sm font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span>Models</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Logs</span>
+</a>
+</div>
+<div class="mt-auto px-sm flex flex-col gap-xs border-t border-outline-variant pt-md">
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-colors font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+<span>Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-lg h-14 w-full z-40 bg-surface-container-lowest border-b border-outline-variant flex-shrink-0">
+<div class="flex items-center gap-md md:hidden">
+<span class="font-h2 text-h2 font-bold tracking-tighter text-primary">StatForge</span>
+</div>
+<div class="hidden md:flex flex-1 items-center max-w-md ml-lg">
+<!-- Search on left as per JSON -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-DEFAULT pl-xl pr-sm py-xs font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" placeholder="Search workspace..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md ml-auto">
+<button class="text-on-surface-variant hover:bg-surface-container p-xs rounded-DEFAULT transition-colors cursor-pointer duration-150">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-xs rounded-DEFAULT transition-colors cursor-pointer duration-150">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-xs rounded-DEFAULT transition-colors cursor-pointer duration-150">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-tint flex items-center justify-center text-on-primary font-h2 text-h2 ml-sm cursor-pointer border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-lg bg-background">
+<!-- Header Section -->
+<div class="mb-lg flex flex-col sm:flex-row sm:items-end justify-between gap-md">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Modeling View</span>
+<span class="material-symbols-outlined text-outline text-[14px]">chevron_right</span>
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Search Results</span>
+</div>
+<h2 class="font-h1 text-h1 text-on-background flex items-center gap-sm">
+                        Best-Model Finder Leaderboard
+                        <span class="inline-flex items-center justify-center bg-tertiary-container/10 text-on-tertiary-container rounded-full px-sm py-[2px] font-label-caps text-label-caps ml-sm">
+                            Automated Search
+                        </span>
+</h2>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs bg-surface-container-lowest border border-outline-variant text-on-surface hover:bg-surface-container px-md py-sm rounded-DEFAULT transition-colors font-body-sm text-body-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                        Export Data
+                    </button>
+<button class="flex items-center gap-xs bg-primary text-on-primary hover:bg-primary/90 px-md py-sm rounded-DEFAULT transition-colors font-body-sm text-body-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                        Rerun Search
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- ROC Chart Overlay (Left Col) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col h-[320px]">
+<div class="flex justify-between items-center mb-md pb-xs border-b border-outline-variant">
+<h3 class="font-h2 text-h2 text-on-surface">ROC Curves Overlay</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">open_in_full</span>
+</button>
+</div>
+<div class="flex-1 relative rounded-DEFAULT overflow-hidden bg-surface-bright border border-outline-variant/50 flex items-center justify-center">
+<!-- ROC Chart Visual -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#e1e3e2_1px,transparent_1px),linear-gradient(to_bottom,#e1e3e2_1px,transparent_1px)] bg-[size:24px_24px] opacity-30"></div>
+<svg class="absolute inset-0 w-full h-full p-lg" preserveaspectratio="none" viewbox="0 0 100 100">
+<line stroke="#c5c5d2" stroke-dasharray="4" stroke-width="1" x1="0" x2="100" y1="100" y2="0"></line>
+<!-- Logistic (Winner) -->
+<path d="M 0 100 Q 10 20, 100 0" fill="none" stroke="#001857" stroke-width="3"></path>
+<!-- LDA -->
+<path d="M 0 100 Q 20 40, 100 0" fill="none" opacity="0.8" stroke="#3dacac" stroke-width="2"></path>
+<!-- Naive Bayes -->
+<path d="M 0 100 Q 40 60, 100 0" fill="none" opacity="0.6" stroke="#8799df" stroke-width="1.5"></path>
+</svg>
+<div class="absolute bottom-xs right-xs bg-surface-container-lowest/80 backdrop-blur-sm border border-outline-variant p-xs rounded-DEFAULT font-label-caps text-label-caps flex flex-col gap-[2px]">
+<div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-primary"></div> Logistic</div>
+<div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-[#3dacac]"></div> LDA</div>
+</div>
+</div>
+</div>
+<!-- Top Model Summary Card (Using requested image token as decorative backdrop) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.02)] relative">
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-10 pointer-events-none">
+<img alt="Abstract geometric data visualization with glowing nodes and connecting lines, deep blue and teal tones, high tech aesthetic" class="w-full h-full object-cover mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzqPdRbKSwfXmk9iHVCDvY87NxVy7tK6ASheike3F5a84xiCPWx-UZ22ENmyq_hFVpolhONWsX7OZ7YAHLwqmNPQjjjhABYif7Py5WUorsk3KhUlCs-3kbeDbUB29Lq4sWzvyuPjiNcYoyyc7ovcrFSQfuGlQEtnUoMHOFtijILQKTsQ3dCvyl1uQZBuSnxT7dnyA1cfbRR4bPiZJKutD7m0sIxuk--xvRCvEnhtCCUfDk60T2U3uhoOSNmlSj3LJxF-irfiwhJoY6"/>
+<div class="absolute inset-0 bg-gradient-to-l from-transparent to-surface-container-lowest"></div>
+</div>
+<div class="p-md relative z-10">
+<div class="flex items-center gap-sm mb-sm text-primary">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<h3 class="font-h2 text-h2">Top Performer</h3>
+</div>
+<p class="font-h1 text-h1 text-on-surface mb-xs">Logistic Regression</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md max-w-[80%]">Selected based on optimal balance of AUC and computational efficiency across cross-validation folds.</p>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-bright border border-outline-variant/50 p-sm rounded-DEFAULT">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Peak AUC</p>
+<p class="font-data-mono text-data-mono text-primary text-[16px]">0.942</p>
+</div>
+<div class="bg-surface-bright border border-outline-variant/50 p-sm rounded-DEFAULT">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Training Time</p>
+<p class="font-data-mono text-data-mono text-on-surface text-[16px]">1.2s</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard Table (Right Col) -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col overflow-hidden">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-bright flex justify-between items-center">
+<h3 class="font-h2 text-h2 text-on-surface">Ranked Models</h3>
+<div class="flex gap-sm">
+<span class="bg-tertiary-container/10 text-on-tertiary-container px-sm py-[2px] rounded-full font-label-caps text-label-caps flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">filter_list</span> Metric: AUC
+                            </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm w-16 text-center">Rank</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm">Model Type</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm text-right">Accuracy</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm text-right">F1-Score</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm text-right">AUC</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-md py-sm text-center">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Winner Row -->
+<tr class="border-b border-outline-variant bg-primary-fixed/20 hover:bg-primary-fixed/30 transition-colors group">
+<td class="px-md py-sm text-center">
+<div class="flex items-center justify-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px] text-[#D4AF37]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-data-mono text-data-mono">1</span>
+</div>
+</td>
+<td class="px-md py-sm font-medium text-on-surface flex items-center gap-sm">
+                                        Logistic Regression
+                                        <span class="bg-surface-container text-on-surface-variant text-[10px] uppercase px-1 rounded border border-outline-variant/50">Base</span>
+</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.895</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.881</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-primary font-bold">0.942</td>
+<td class="px-md py-sm text-center">
+<button class="bg-primary text-on-primary hover:bg-primary/90 px-sm py-[4px] rounded-DEFAULT transition-colors font-body-sm text-body-sm shadow-sm whitespace-nowrap">
+                                            Select for Report
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors">
+<td class="px-md py-sm text-center font-data-mono text-data-mono text-on-surface-variant">2</td>
+<td class="px-md py-sm text-on-surface">Linear Discriminant Analysis (LDA)</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.872</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.865</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.915</td>
+<td class="px-md py-sm text-center">
+<button class="bg-surface-container-lowest border border-outline text-on-surface hover:bg-surface-container px-sm py-[4px] rounded-DEFAULT transition-colors font-body-sm text-body-sm whitespace-nowrap opacity-0 group-hover:opacity-100 focus:opacity-100" style="opacity: 1;"> <!-- Forced opacity for display -->
+                                            Select
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors">
+<td class="px-md py-sm text-center font-data-mono text-data-mono text-on-surface-variant">3</td>
+<td class="px-md py-sm text-on-surface">Quadratic Discriminant Analysis (QDA)</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.841</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.830</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface">0.880</td>
+<td class="px-md py-sm text-center">
+<button class="bg-surface-container-lowest border border-outline text-on-surface hover:bg-surface-container px-sm py-[4px] rounded-DEFAULT transition-colors font-body-sm text-body-sm whitespace-nowrap opacity-0 hover:opacity-100 focus:opacity-100" style="opacity: 1;">
+                                            Select
+                                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-md py-sm text-center font-data-mono text-data-mono text-on-surface-variant">4</td>
+<td class="px-md py-sm text-on-surface">Naive Bayes</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface-variant">0.795</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface-variant">0.782</td>
+<td class="px-md py-sm text-right font-data-mono text-data-mono text-on-surface-variant">0.845</td>
+<td class="px-md py-sm text-center">
+<button class="bg-surface-container-lowest border border-outline text-on-surface hover:bg-surface-container px-sm py-[4px] rounded-DEFAULT transition-colors font-body-sm text-body-sm whitespace-nowrap opacity-0 hover:opacity-100 focus:opacity-100" style="opacity: 1;">
+                                            Select
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-md py-sm bg-surface-bright border-t border-outline-variant text-right">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing top 4 results from parameter grid search.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

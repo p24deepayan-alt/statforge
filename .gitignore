@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+statforge.egg-info/
+statforge_data/
+.pytest_cache/
+.coverage
+build/
+dist/

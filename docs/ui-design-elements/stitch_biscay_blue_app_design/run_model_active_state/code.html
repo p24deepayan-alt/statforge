@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StatForge - Modeling</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1c",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "tertiary-fixed-dim": "#6ed7d7",
+                        "surface-container-low": "#f2f4f3",
+                        "secondary-container": "#e1dfdf",
+                        "tertiary": "#002424",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eceeed",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#8799df",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8faf9",
+                        "secondary": "#5e5e5e",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#3dacac",
+                        "surface-variant": "#e1e3e2",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e1e3e2",
+                        "on-tertiary-fixed": "#002020",
+                        "on-primary-fixed": "#001550",
+                        "outline": "#757681",
+                        "surface-container-high": "#e6e9e8",
+                        "surface": "#f8faf9",
+                        "on-secondary-fixed-variant": "#464747",
+                        "outline-variant": "#c5c5d2",
+                        "surface-dim": "#d8dad9",
+                        "tertiary-fixed": "#8bf3f3",
+                        "primary": "#001857",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-on-surface": "#eff1f0",
+                        "tertiary-container": "#003b3b",
+                        "primary-container": "#1b2f6e",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#dce1ff",
+                        "surface-tint": "#495b9c",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-secondary-container": "#626262",
+                        "on-surface-variant": "#454650",
+                        "on-background": "#191c1c",
+                        "inverse-primary": "#b6c4ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3131",
+                        "surface-bright": "#f8faf9",
+                        "on-primary-fixed-variant": "#304382"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "sidebar_width": "260px",
+                        "gutter": "12px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "data-mono": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden antialiased flex h-screen w-full selection:bg-primary-container selection:text-on-primary-container">
+<!-- Shared Component: SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 border-r border-gray-200 dark:border-slate-800 bg-[#F7F8F9] dark:bg-slate-950 flex flex-col py-6 px-4 z-20">
+<div class="mb-8 px-4">
+<h1 class="text-xl font-bold text-[#1B2F6E] dark:text-blue-500 tracking-tight">StatForge</h1>
+<p class="font-label-caps text-label-caps text-secondary mt-1 uppercase">Analysis Suite</p>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-gray-600 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-900 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-[#1B2F6E] transition-colors" data-icon="database">database</span>
+<span class="font-['Inter'] text-xs font-semibold uppercase tracking-wider">Datasets</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT bg-white dark:bg-slate-900 text-[#1B2F6E] dark:text-blue-400 border-r-4 border-[#1B2F6E] transition-all duration-200 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-['Inter'] text-xs font-semibold uppercase tracking-wider">Modeling</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-gray-600 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-900 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-[#1B2F6E] transition-colors" data-icon="bar_chart">bar_chart</span>
+<span class="font-['Inter'] text-xs font-semibold uppercase tracking-wider">Graphs</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-gray-600 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-900 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-[#1B2F6E] transition-colors" data-icon="ios_share">ios_share</span>
+<span class="font-['Inter'] text-xs font-semibold uppercase tracking-wider">Export</span>
+</a>
+</div>
+<div class="mt-auto px-4 border-t border-outline-variant pt-4">
+<div class="flex items-center gap-3 text-secondary">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div>
+<div class="font-body-sm text-body-sm font-medium text-on-surface">Data Scientist</div>
+<div class="font-label-caps text-label-caps opacity-70">Workspace A</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex flex-col flex-1 ml-64 h-screen bg-background relative">
+<!-- Shared Component: TopAppBar -->
+<header class="docked full-width top-0 border-b border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex justify-between items-center w-full px-6 h-16 z-10 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="font-h2 text-h2 text-on-surface">Gradient Boosting Classifier</h2>
+<span class="px-2 py-0.5 rounded-DEFAULT bg-surface-variant text-on-surface-variant font-label-caps text-label-caps border border-outline-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    RUNNING
+                </span>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-DEFAULT flex items-center justify-center text-gray-500 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-DEFAULT flex items-center justify-center text-gray-500 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<!-- Disabled/Loading Primary Action -->
+<button class="flex items-center gap-2 px-4 h-9 bg-surface-variant text-on-surface opacity-60 cursor-not-allowed rounded-DEFAULT border border-outline-variant font-body-sm text-body-sm font-medium transition-colors" disabled="">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+                    Run Model
+                </button>
+</div>
+</header>
+<!-- Main Workspace (Layout: Fixed-Fluid Hybrid with right panel) -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Center Canvas: Results & Processing State -->
+<main class="flex-1 overflow-y-auto p-6 flex flex-col relative bg-surface">
+<div class="mb-6 flex justify-between items-end">
+<div>
+<h3 class="font-h1 text-h1 text-on-surface mb-1">Model Evaluation</h3>
+<p class="font-body-sm text-body-sm text-secondary">Awaiting completion of fitting process to generate metrics and visualizations.</p>
+</div>
+</div>
+<!-- Bento Grid Skeletons (Processing State) -->
+<div class="grid grid-cols-12 gap-gutter flex-1 opacity-40 pointer-events-none transition-opacity duration-500">
+<!-- Top Large Chart Skeleton -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-6 flex flex-col min-h-[320px]">
+<div class="flex justify-between items-center mb-6">
+<div class="h-5 w-48 bg-surface-variant rounded-sm"></div>
+<div class="h-4 w-24 bg-surface-variant rounded-sm"></div>
+</div>
+<div class="flex-1 flex items-end gap-2 px-4 pb-2 border-b border-l border-surface-variant">
+<div class="w-full bg-surface-variant h-[20%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[40%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[30%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[50%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[80%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[45%] rounded-t-sm"></div>
+<div class="w-full bg-surface-variant h-[70%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Side Metrics Skeleton -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-6 flex-1 flex flex-col justify-center items-center">
+<div class="h-4 w-32 bg-surface-variant rounded-sm mb-4"></div>
+<div class="w-24 h-24 rounded-full border-8 border-surface-variant"></div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-6 flex-1">
+<div class="h-4 w-24 bg-surface-variant rounded-sm mb-6"></div>
+<div class="space-y-4">
+<div class="flex justify-between"><div class="h-3 w-20 bg-surface-variant rounded-sm"></div><div class="h-3 w-12 bg-surface-variant rounded-sm"></div></div>
+<div class="flex justify-between"><div class="h-3 w-16 bg-surface-variant rounded-sm"></div><div class="h-3 w-16 bg-surface-variant rounded-sm"></div></div>
+<div class="flex justify-between"><div class="h-3 w-24 bg-surface-variant rounded-sm"></div><div class="h-3 w-10 bg-surface-variant rounded-sm"></div></div>
+</div>
+</div>
+</div>
+<!-- Bottom Wide Skeleton -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-6 min-h-[240px]">
+<div class="h-5 w-40 bg-surface-variant rounded-sm mb-6"></div>
+<div class="w-full h-8 bg-surface-variant rounded-sm mb-2"></div>
+<div class="w-full h-8 bg-surface-variant rounded-sm mb-2"></div>
+<div class="w-full h-8 bg-surface-variant rounded-sm mb-2"></div>
+<div class="w-full h-8 bg-surface-variant rounded-sm"></div>
+</div>
+</div>
+<!-- Processing Overlay -->
+<div class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-surface/50 backdrop-blur-[2px]">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-8 shadow-[0_16px_32px_-8px_rgba(0,0,0,0.08)] flex flex-col items-center max-w-sm w-full text-center">
+<span class="material-symbols-outlined text-[48px] text-primary mb-4 animate-[spin_3s_linear_infinite]" style="font-variation-settings: 'wght' 200;">data_usage</span>
+<h4 class="font-h2 text-h2 text-on-surface mb-2">Processing Data</h4>
+<p class="font-body-sm text-body-sm text-secondary">The model is currently fitting to the dataset. Depending on the volume of data and hyperparameter complexity, this may take a few moments.</p>
+</div>
+</div>
+</main>
+<!-- Right Configuration Panel (Disabled State) -->
+<aside class="w-[320px] bg-surface-container-lowest border-l border-outline-variant flex flex-col shrink-0 overflow-y-auto hidden md:flex">
+<div class="p-4 border-b border-outline-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">tune</span>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface uppercase tracking-wider">Hyperparameters</h3>
+</div>
+<div class="p-6 flex flex-col gap-6 opacity-60 pointer-events-none">
+<!-- Param Group 1 -->
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-secondary uppercase border-b border-outline-variant pb-1">Ensemble Config</h4>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm text-on-surface-variant">n_estimators</label>
+<input class="w-full h-9 px-3 bg-surface border border-outline-variant rounded-DEFAULT font-data-mono text-data-mono text-on-surface-variant cursor-not-allowed" disabled="" type="text" value="500"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm text-on-surface-variant">learning_rate</label>
+<input class="w-full h-9 px-3 bg-surface border border-outline-variant rounded-DEFAULT font-data-mono text-data-mono text-on-surface-variant cursor-not-allowed" disabled="" type="text" value="0.05"/>
+</div>
+</div>
+<!-- Param Group 2 -->
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-secondary uppercase border-b border-outline-variant pb-1">Tree Architecture</h4>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm text-on-surface-variant">max_depth</label>
+<select class="w-full h-9 px-3 bg-surface border border-outline-variant rounded-DEFAULT font-data-mono text-data-mono text-on-surface-variant cursor-not-allowed appearance-none" disabled="">
+<option>6</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm text-on-surface-variant">min_samples_split</label>
+<input class="w-full h-9 px-3 bg-surface border border-outline-variant rounded-DEFAULT font-data-mono text-data-mono text-on-surface-variant cursor-not-allowed" disabled="" type="text" value="4"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-sm text-body-sm text-on-surface-variant">loss_function</label>
+<select class="w-full h-9 px-3 bg-surface border border-outline-variant rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant cursor-not-allowed appearance-none" disabled="">
+<option>log_loss</option>
+</select>
+</div>
+</div>
+<div class="mt-4 p-4 bg-surface-variant rounded-DEFAULT border border-outline-variant">
+<p class="font-label-caps text-label-caps text-secondary mb-1">Target Variable</p>
+<div class="inline-flex items-center gap-1.5 px-2 py-1 bg-[#3dacac]/15 text-[#004f50] rounded-DEFAULT font-data-mono text-data-mono text-[11px] border border-[#3dacac]/30">
+<span class="material-symbols-outlined text-[14px]">target</span>
+                            [Customer_Churn]
+                        </div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Bottom Fixed Progress Bar Area -->
+<div class="h-14 bg-surface-container-highest border-t border-outline-variant flex items-center justify-between px-6 shrink-0 z-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[20px] text-primary">memory</span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Fitting Model: Iteration 214 / 500</span>
+</div>
+<div class="flex items-center gap-4 w-[400px]">
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden border border-outline-variant/30">
+<div class="h-full bg-primary w-[42%] relative overflow-hidden">
+<!-- Striped loading effect (static representation via CSS gradients) -->
+<div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.15)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem]"></div>
+</div>
+</div>
+<span class="font-data-mono text-data-mono font-bold text-primary w-12 text-right">42%</span>
+<div class="w-px h-6 bg-outline-variant mx-2"></div>
+<button class="font-label-caps text-label-caps text-error hover:text-on-error-container transition-colors uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">stop_circle</span>
+                    Halt
+                </button>
+</div>
+</div>
+</div>
+</body></html>
