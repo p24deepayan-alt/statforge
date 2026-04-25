@@ -7,3 +7,4 @@ statforge_data/
 .coverage
 build/
 dist/
+docs/
